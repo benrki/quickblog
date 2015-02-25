@@ -1,17 +1,11 @@
 class PostsController < ApplicationController
-  before_filter :authenticate, except: [ :index, :show ]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action(:authenticate, except: [ :index, :show ])
+  before_action(:set_post, only: [:show, :edit, :update, :destroy])
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-      format.atom
-    end
   end
 
   # GET /posts/1
@@ -26,6 +20,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+
   end
 
   # POST /posts
@@ -81,7 +76,8 @@ class PostsController < ApplicationController
 
     def authenticate
       authenticate_or_request_with_http_basic do |name, password|
-        name == "admin" && password == "secret"
+        name == "admin" && password == "admin"
+        name == "chunkylover69" && password == "nternet"
       end
     end
 end
